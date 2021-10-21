@@ -11,16 +11,39 @@ public abstract class Assignment{
 
   public Assignment(){totalTime = Duration.ofSeconds(0);}
 
-  public void addTime(Duration time){
-    totalTime.plus(time);
+  public void startUpdate(LocalDateTime initTime){
+    if(totalTime.getSeconds() == 0){ //Not started yet
+      initialTime = initTime;
+
+      System.out.println("This is " + name);
+      System.out.println("Initial time: " + initialTime);
+      System.out.println("Total time: " + totalTime.getSeconds());
+      System.out.println("Final time: " + finalTime);
+
+      if(parent!=null) {
+        parent.startUpdate(initTime); //Send update information to parent
+      }
+    }
   }
 
-  public void update(){
+  public void update(Duration time, LocalDateTime finTime){
+    totalTime = totalTime.plus(time);
+    finalTime = finTime;
 
+    System.out.println("This is " + name);
+    System.out.println("Initial time: " + initialTime);
+    System.out.println("Total time: " + totalTime.getSeconds());
+    System.out.println("Final time: " + finalTime);
+
+    if(parent!=null) {
+      parent.update(totalTime,finTime);//Send update information to parent
+    }
   }
 
-  public void setParent(Assignment f){
-    parent = f;
+
+  //Setters and getters
+  public void setParent(Assignment par){
+    parent = par;
   }
 
   public LocalDateTime getInitialTime(){

@@ -15,12 +15,17 @@ public class Main {
 
 
     P1.addChild(T1,new int[]{}, 0);
+    System.out.println("--------------");
     P1.startTask(new int[]{0}, 1);
+    System.out.println("--------------");
     P1.stopTask(new int[]{0}, 1);
-
+    System.out.println("--------------");
     P1.addChild(P2,new int[]{}, 0);
+    System.out.println("--------------");
     P1.addChild(T2,new int[]{1}, 1);
+    System.out.println("--------------");
     P1.startTask(new int[]{0,1}, 2);
+    System.out.println("--------------");
     P1.stopTask(new int[]{0,1}, 2);
 
 

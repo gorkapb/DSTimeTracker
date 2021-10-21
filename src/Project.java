@@ -9,7 +9,7 @@ public class Project extends Assignment{
 
   @Override
   public void addChild(Assignment assignment, int[] childIndex, int depth){ //depth of the child parent (MIN=0)
-    System.out.println("Starting addChild, this is "+ name);
+    System.out.println("Starting addChild(), this is "+ name);
     if(depth == 0){ //Current project is child's parent
       System.out.println("Child added");
       assignment.setParent(this);
@@ -23,7 +23,7 @@ public class Project extends Assignment{
 
   @Override
   public void startTask(int[] childIndex, int depth){ //depth of the task to start (MIN=1)
-    System.out.println("Starting startTask, this is "+ name);
+    System.out.println("Starting startTask(), this is "+ name);
     if(depth == 1){ //Current project is task's parent
       children.get(childIndex[0]).start();
     }
@@ -35,7 +35,7 @@ public class Project extends Assignment{
 
   @Override
   public void stopTask(int[] childIndex, int depth){ //depth of the task to stop (MIN=1)
-    System.out.println("Starting stopTask, this is "+ name);
+    System.out.println("Starting stopTask(), this is "+ name);
     if(depth == 1){ //Current project is task's parent
       children.get(childIndex[0]).stop();
     }
