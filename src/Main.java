@@ -1,9 +1,12 @@
 import java.time.LocalDateTime;
 import java.time.Duration;
 import java.time.format.DateTimeFormatter;
+import java.util.TimerTask;
+import java.util.Timer;
+
 
 public class Main {
-  public static void main(String[] args) {
+  public void testNodes(String[] args) {
     Project P1 = new Project();
     P1.name = "P1";
     Task T1 = new Task();
@@ -27,7 +30,21 @@ public class Main {
     P1.startTask(new int[]{0,1}, 2);
     System.out.println("--------------");
     P1.stopTask(new int[]{0,1}, 2);
+  }
+
+  public static void testObserver() {
+    Clock observable = new Clock();
+    Interval observer = new Interval();
+
+    observable.addObserver(observer);
+    observable.startClock();
 
 
+
+    observer.printTime();
+  }
+
+  public static void main(String[] args) {
+    testObserver();
   }
 }
