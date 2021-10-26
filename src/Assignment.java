@@ -60,11 +60,11 @@ public abstract class Assignment{
 
 
  // METHODS TO OVERRIDE
-  public void addChild(Assignment assignment, int[] childIndex, int depth){} //Only used by project
-  public void startTask(int[] childIndex, int depth){} //Only used by project
-  public void stopTask(int[] childIndex, int depth){} //Only used by project
-  public void start(){} //Only used by task
-  public void stop(){} //Only used by task
+//  public void addChild(Assignment assignment, int[] childIndex, int depth){} //Only used by project
+//  public void startTask(int[] childIndex, int depth){} //Only used by project
+//  public void stopTask(int[] childIndex, int depth){} //Only used by project
+//  public void start(Clock clock){} //Only used by task
+//  public void stop(Clock clock){} //Only used by task
 
 //  public abstract void acceptVisitor(Visitor vis);
 }
