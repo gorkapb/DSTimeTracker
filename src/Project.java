@@ -10,10 +10,6 @@ public class Project extends Assignment {
     }
   }
 
-  public Assignment getChild(int index) {
-    return children.get(index);
-  }
-
   @Override
   public void addChild(Assignment assignment) {
     children.add(assignment);

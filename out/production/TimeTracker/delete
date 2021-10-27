@@ -24,6 +24,28 @@
 //    P1.stopTask(new int[]{0,1}, 2);
 //  }
 
+  public static void testNodes(){
+    Clock clock = new Clock();
+    clock.startClock();
+
+    Project p1 = new Project("P1", null);
+    Project p2 = new Project("P2", p1);
+    Task t1 = new Task("T1", p2);
+    Task t2 = new Task("T2", p1);
+
+    t1.start(clock);
+    try{ Thread.sleep(8000); }
+    catch(Exception e){}
+    t1.stop(clock);
+
+    t2.start(clock);
+    try{ Thread.sleep(8000); }
+    catch(Exception e){}
+    t2.stop(clock);
+
+  }
+
+
 
 
 METODOS DE PROJECT
@@ -65,3 +87,11 @@ METODOS DE PROJECT
 //      children.get(childIndex[depth-1]).stopTask(childIndex, depth-1);
 //    }
 //  }
+
+// METODOS DE ASSIGMENT
+
+//  public void addChild(Assignment assignment, int[] childIndex, int depth){} //Only used by project
+//  public void startTask(int[] childIndex, int depth){} //Only used by project
+//  public void stopTask(int[] childIndex, int depth){} //Only used by project
+//  public void start(Clock clock){} //Only used by task
+//  public void stop(Clock clock){} //Only used by task

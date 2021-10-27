@@ -14,7 +14,7 @@ public class Clock extends Observable{
     };
 
     Timer timer = new Timer("Timer");
-    timer.scheduleAtFixedRate(addTwoSeconds, 0, 1000L); //Period = 2s
+    timer.scheduleAtFixedRate(addTwoSeconds, 0, 2000L); //Period = 2s
   }
 
 }
