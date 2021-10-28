@@ -1,9 +1,3 @@
-import java.time.LocalDateTime;
-import java.time.Duration;
-import java.time.format.DateTimeFormatter;
-import java.util.TimerTask;
-import java.util.Timer;
-
 public class Main {
 
   public static void apendixA(){
@@ -33,8 +27,8 @@ public class Main {
     firstList.start();
     sleep(6);
     System.out.println("Second list start\n");
-    sleep(4);
     secondList.start();
+    sleep(4);
     firstList.stop();
     System.out.println("First list stop\n");
     sleep(2);
@@ -51,16 +45,14 @@ public class Main {
   }
 
   public static void testVisitor(){
-    Visitor vis = new Visitor("jason.txt");
+    //Clock clock = Clock.getInstance();
 
-    Clock clock = Clock.getInstance();
-
-    Project root = new Project("Root", null);
-    Project softwareDesing = new Project("Software design", root);
-    Project softwareTesting = new Project("Software testing", root);
-    Project databases = new Project("Databases", root);
-    Project problems = new Project("Problems", softwareDesing);
-    Project projectTimeTracker = new Project("Project time tracker", softwareDesing);
+    Project root = new Project("root", null);
+    Project softwareDesing = new Project("software design", root);
+    Project softwareTesting = new Project("software testing", root);
+    Project databases = new Project("databases", root);
+    Project problems = new Project("problems", softwareDesing);
+    Project projectTimeTracker = new Project("project time tracker", softwareDesing);
 
     Task transportation = new Task("transportation", root);
     Task firstList = new Task("first list", problems);
@@ -79,8 +71,8 @@ public class Main {
     firstList.start();
     sleep(6);
     System.out.println("Second list start\n");
-    sleep(4);
     secondList.start();
+    sleep(4);
     firstList.stop();
     System.out.println("First list stop\n");
     sleep(2);
@@ -94,9 +86,9 @@ public class Main {
     System.out.println("Transportation stop\n");
 
 
-
+    Visitor vis = new Visitor();
     root.acceptVisitor(vis);
-    vis.writeFile();
+    vis.saveData("tree.json");
   }
 
   public static void sleep(int seconds) {

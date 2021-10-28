@@ -21,23 +21,10 @@ public abstract class Assignment {
     }
   }
 
-  public void startUpdate(LocalDateTime actualTime, int seconds){
-    this.finalTime = actualTime;
-    this.totalTime = totalTime.plusSeconds(seconds);
-    if (this.totalTime.getSeconds() == seconds) {
-      this.initialTime = actualTime.minusSeconds(2);
-//      System.out.println("This is " + name);
-//      System.out.println("Initial time: " + initialTime);
-//      System.out.println("Total time: " + totalTime.getSeconds());
-//      System.out.println("Final time: " + finalTime);
-
-      if (this.parent != null) {
-        this.parent.startUpdate(initialTime, seconds);
-      }
-    }
-  }
-
   public void update(LocalDateTime actualTime, int seconds) {
+    if(this.totalTime.getSeconds()==0) {
+      this.initialTime = actualTime.minusSeconds(2);
+    }
     this.totalTime = this.totalTime.plusSeconds(seconds);
     this.finalTime = actualTime;
 
@@ -46,6 +33,7 @@ public abstract class Assignment {
 //    System.out.println("Total time: " + totalTime.getSeconds());
 //    System.out.println("Final time: " + finalTime);
 
+    show();
     if(this.parent != null) {
       this.parent.update(actualTime, seconds);
     }
@@ -80,9 +68,9 @@ public abstract class Assignment {
     String init = this.initialTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     String fin = this.finalTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     System.out.println("activity: \t" + this.name + "\t\t" + init + "\t\t" + fin + "\t\t" + this.totalTime.getSeconds());
-    if (this.parent != null) {
-      this.parent.show();
-    }
+//    if (this.parent != null) {
+//      this.parent.show();
+//    }
   }
 
   public void acceptVisitor(Visitor vis) {};

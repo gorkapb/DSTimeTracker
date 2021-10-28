@@ -1,4 +1,3 @@
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -19,16 +18,6 @@ public class Task extends Assignment {
     Interval interval = new Interval(this, actualTime);
 
     clock.addObserver(interval);
-    int seconds = 2;
-    this.totalTime = totalTime.plusSeconds(seconds);
-    this.finalTime = actualTime;
-
-    if(totalTime.getSeconds() == seconds) { //Not started yet
-      this.initialTime = actualTime.minusSeconds(2);
-    }
-    this.parent.startUpdate(actualTime, seconds);
-
-    interval.show();
   }
 
   public void stop() {

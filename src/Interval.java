@@ -12,9 +12,8 @@ public class Interval implements Observer {
   private Task parent;
 
   public Interval(Task parent, LocalDateTime actualTime) {
-    this.totalTime = Duration.ofSeconds(2);
-    this.initialTime = actualTime.minusSeconds(2);
-    this.finalTime = actualTime;
+    this.totalTime = Duration.ofSeconds(0);
+    this.initialTime = actualTime;
     this.parent = parent;
     this.parent.addInterval(this);
   }
@@ -23,9 +22,9 @@ public class Interval implements Observer {
   public void update(Observable o, Object time) {
     this.totalTime = this.totalTime.plusSeconds(2);
     this.finalTime = (LocalDateTime) time;
-
-    this.parent.update((LocalDateTime) time,2);
     this.show();
+    this.parent.update((LocalDateTime) time,2);
+
   }
 
   public LocalDateTime getInitialTime() {
@@ -54,8 +53,8 @@ public class Interval implements Observer {
     String init = this.initialTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     String fin = this.finalTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     System.out.println("interval: \t\t\t" + "\t\t" + "\t\t" + init + "\t\t" + fin + "\t\t" + this.totalTime.getSeconds());
-    if (this.parent != null) {
-      this.parent.show();
-    }
+//    if (this.parent != null) {
+//      this.parent.show();
+//    }
   }
 }

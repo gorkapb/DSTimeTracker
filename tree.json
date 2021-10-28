@@ -1,38 +1,38 @@
 [{
-    "initialTime": "2021-10-28 22:03:10",
+    "initialTime": "2021-10-29 01:07:02",
     "children": [
         {
-            "initialTime": "2021-10-28 22:03:14",
+            "initialTime": "2021-10-29 01:07:08",
             "children": [
                 {
-                    "initialTime": "2021-10-28 22:03:16",
+                    "initialTime": "2021-10-29 01:07:08",
                     "children": [
                         {
-                            "initialTime": "2021-10-28 22:03:16",
+                            "initialTime": "2021-10-29 01:07:08",
                             "intervals": [{
-                                "initialTime": "2021-10-28 22:03:16",
-                                "totalTime": 12,
-                                "finalTime": "2021-10-28 22:03:28"
+                                "initialTime": "2021-10-29 01:07:08",
+                                "totalTime": 10,
+                                "finalTime": "2021-10-29 01:07:18"
                             }],
-                            "totalTime": 12,
+                            "totalTime": 10,
                             "name": "first list",
-                            "finalTime": "2021-10-28 22:03:28"
+                            "finalTime": "2021-10-29 01:07:18"
                         },
                         {
-                            "initialTime": "2021-10-28 22:03:26",
+                            "initialTime": "2021-10-29 01:07:14",
                             "intervals": [{
-                                "initialTime": "2021-10-28 22:03:26",
-                                "totalTime": 4,
-                                "finalTime": "2021-10-28 22:03:30"
+                                "initialTime": "2021-10-29 01:07:14",
+                                "totalTime": 6,
+                                "finalTime": "2021-10-29 01:07:20"
                             }],
-                            "totalTime": 4,
+                            "totalTime": 6,
                             "name": "second list",
-                            "finalTime": "2021-10-28 22:03:30"
+                            "finalTime": "2021-10-29 01:07:20"
                         }
                     ],
                     "totalTime": 16,
-                    "name": "Problems",
-                    "finalTime": "2021-10-28 22:03:30"
+                    "name": "problems",
+                    "finalTime": "2021-10-29 01:07:20"
                 },
                 {
                     "initialTime": null,
@@ -53,48 +53,48 @@
                         }
                     ],
                     "totalTime": 0,
-                    "name": "Project time tracker",
+                    "name": "project time tracker",
                     "finalTime": null
                 }
             ],
-            "totalTime": 14,
-            "name": "Software design",
-            "finalTime": "2021-10-28 22:03:30"
+            "totalTime": 16,
+            "name": "software design",
+            "finalTime": "2021-10-29 01:07:20"
         },
         {
             "initialTime": null,
             "children": [],
             "totalTime": 0,
-            "name": "Software testing",
+            "name": "software testing",
             "finalTime": null
         },
         {
             "initialTime": null,
             "children": [],
             "totalTime": 0,
-            "name": "Databases",
+            "name": "databases",
             "finalTime": null
         },
         {
-            "initialTime": "2021-10-28 22:03:10",
+            "initialTime": "2021-10-29 01:07:02",
             "intervals": [
                 {
-                    "initialTime": "2021-10-28 22:03:10",
-                    "totalTime": 6,
-                    "finalTime": "2021-10-28 22:03:16"
+                    "initialTime": "2021-10-29 01:07:00",
+                    "totalTime": 4,
+                    "finalTime": "2021-10-29 01:07:06"
                 },
                 {
-                    "initialTime": "2021-10-28 22:03:30",
-                    "totalTime": 6,
-                    "finalTime": "2021-10-28 22:03:36"
+                    "initialTime": "2021-10-29 01:07:22",
+                    "totalTime": 4,
+                    "finalTime": "2021-10-29 01:07:26"
                 }
             ],
-            "totalTime": 12,
+            "totalTime": 8,
             "name": "transportation",
-            "finalTime": "2021-10-28 22:03:36"
+            "finalTime": "2021-10-29 01:07:26"
         }
     ],
-    "totalTime": 26,
-    "name": "Root",
-    "finalTime": "2021-10-28 22:03:36"
+    "totalTime": 24,
+    "name": "root",
+    "finalTime": "2021-10-29 01:07:26"
 }]

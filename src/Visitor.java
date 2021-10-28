@@ -4,32 +4,16 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import java.io.FileWriter;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import org.json.JSONTokener;
+import java.io.InputStream;
 
 
 public class Visitor {
-  private String fileName;
   private JSONArray jsonArray;
 
 
-  public Visitor(String fileName){
-    createFile(fileName);
+  public Visitor(){
     this.jsonArray = new JSONArray();
-  }
-
-  public void createFile(String fileName) {
-    this.fileName = fileName;
-    try {
-      File myObj = new File(this.fileName);
-      if (myObj.createNewFile()) {
-        System.out.println("File created: " + myObj.getName());
-      } else {
-        System.out.println("File already exists.");
-      }
-    } catch (IOException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-    }
   }
 
   public void visitRoot(Project project) {
@@ -127,7 +111,22 @@ public class Visitor {
     return obj;
   }
 
-  public void writeFile(){
+  public void createFile(String fileName) {
+    fileName = fileName;
+    try {
+      File myObj = new File(fileName);
+      if (myObj.createNewFile()) {
+        System.out.println("File created: " + myObj.getName());
+      } else {
+        System.out.println("File already exists.");
+      }
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+  }
+  public void saveData(String fileName){
+    createFile(fileName);
     try {
       FileWriter myWriter = new FileWriter(fileName);
       myWriter.write(this.jsonArray.toString(4));
@@ -137,5 +136,9 @@ public class Visitor {
       System.out.println("An error occurred.");
       e.printStackTrace();
     }
+  }
+
+  public void loadData(String fileName){
+
   }
 }
