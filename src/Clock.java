@@ -3,8 +3,20 @@ import java.util.TimerTask;
 import java.util.Timer;
 
 public class Clock extends Observable{
+  private static Clock uniqueInstance;
 
-  public void startClock(){
+  private Clock() {
+    startClock();
+  }
+
+  public static Clock getInstance() {
+    if (uniqueInstance == null) {
+      uniqueInstance = new Clock();
+    }
+    return  uniqueInstance;
+  }
+
+  private void startClock(){
 
     TimerTask addTwoSeconds = new TimerTask() {
       public void run() {

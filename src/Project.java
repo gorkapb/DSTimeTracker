@@ -5,9 +5,11 @@ public class Project extends Assignment {
 
   public Project(String n, Assignment par) {
     super(n, par);
-    if (parent != null) {
-      parent.addChild(this);
-    }
+    this.type = true;
+  }
+
+  public ArrayList<Assignment> getChildren(){
+    return this.children;
   }
 
   @Override
@@ -15,11 +17,11 @@ public class Project extends Assignment {
     children.add(assignment);
   }
 
-//  @Override
-//  public void acceptVisitor(Visitor vis) {
-//    vis.visitComponent(this);
+  @Override
+  public void acceptVisitor(Visitor vis) {
+    vis.visitRoot(this);
 //    for (Assignment child : children) {
 //      child.acceptVisitor(vis);
 //    }
-//  }
+  }
 }

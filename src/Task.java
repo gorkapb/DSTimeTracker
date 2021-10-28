@@ -1,14 +1,12 @@
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Task extends Assignment {
   private ArrayList<Interval> intervals = new ArrayList<Interval>();
-  private Clock clock;
 
-  public Task(String n, Assignment par,Clock clock) {
+  public Task(String n, Assignment par) {
     super(n, par);
-    this.clock = clock;
+    this.type = false;
   }
 
   public void start() {
@@ -16,17 +14,15 @@ public class Task extends Assignment {
 //    System.out.println("My parent is " + this.parent.name);
 
     LocalDateTime actualTime = LocalDateTime.now();
-    //Start interval
     Interval interval = new Interval(this, actualTime);
-    this.intervals.add(interval);
-    this.clock.addObserver(interval);
+    Clock clock = Clock.getInstance();
+    clock.addObserver(interval);
 
     if(totalTime.getSeconds() == 0) { //Not started yet
       this.initialTime = actualTime;
 //      System.out.println("Initial time: " + this.initialTime);
 //      System.out.println("Total time: " + this.totalTime.getSeconds());
 //      System.out.println("Final time: " + this.finalTime);
-
 //      System.out.println("-> Updating parents now");
       this.parent.startUpdate(this.initialTime);
     }
@@ -37,16 +33,27 @@ public class Task extends Assignment {
 //    System.out.println("-> Task stopped, this is " + name);
 //    System.out.println("My parent is " + parent.name);
 
-    //Communicate w interval
-    this.clock.deleteObserver(intervals.get(intervals.size()-1));
+    Clock clock = Clock.getInstance();
+    clock.deleteObserver(this.intervals.get(this.intervals.size()-1));
 
 //    System.out.println("Initial time: " + initialTime);
 //    System.out.println("Total time: " + totalTime.getSeconds());
 //    System.out.println("Final time: " + finalTime);
   }
 
-//  @Override
-//  public void acceptVisitor(Visitor vis) {
-//    vis.visitLeaf(this);
-//  }
+  public ArrayList<Interval> getIntervals(){
+    return this.intervals;
+  }
+
+  public void addInterval(Interval interval) {
+    this.intervals.add(interval);
+  }
+
+  @Override
+  public void acceptVisitor(Visitor vis) {
+    vis.visitTask(this);
+    for (Interval interval : this.intervals) {
+      interval.acceptVisitor(vis);
+    }
+  }
 }

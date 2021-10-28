@@ -8,12 +8,13 @@ public class Interval implements Observer {
   private LocalDateTime initialTime;
   private Duration totalTime;
   private LocalDateTime finalTime;
-  private Assignment parent;
+  private Task parent;
 
-  public Interval(Assignment par, LocalDateTime time) {
+  public Interval(Task parent, LocalDateTime time) {
     this.totalTime = Duration.ofSeconds(0);
     this.initialTime = time;
-    this.parent = par;
+    this.parent = parent;
+    this.parent.addInterval(this);
   }
 
   @Override
@@ -25,12 +26,32 @@ public class Interval implements Observer {
     this.show();
   }
 
+  public String getInitialTimeToString() {
+    return this.initialTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+  }
+
+  public String getFinalTimeToString() {
+    return this.finalTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+  }
+
+  public long getTotalTime() { return this.totalTime.getSeconds(); }
+
+  public Task getParent() { return this.parent; }
+
+  public void setTime(LocalDateTime initialTime, LocalDateTime finalTime, Long totalTime){
+    this.initialTime = initialTime;
+    this.finalTime = finalTime;
+    this.totalTime = Duration.ofSeconds(totalTime);
+  }
+
+  public void acceptVisitor(Visitor vis) {
+    vis.visitInterval(this);
+  }
+
   public void show() {
     String init = this.initialTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     String fin = this.finalTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-
     System.out.println("interval: \t\t\t" + "\t\t" + "\t\t" + init + "\t\t" + fin + "\t\t" + this.totalTime.getSeconds());
-
     if (this.parent != null) {
       this.parent.show();
     }
