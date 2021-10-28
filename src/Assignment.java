@@ -12,33 +12,34 @@ public abstract class Assignment {
   protected String name;
   protected boolean type;
 
-  public Assignment(String n, Assignment par) {
+  public Assignment(String name, Assignment parent) {
     this.totalTime = Duration.ofSeconds(0);
-    this.name = n;
-    this.parent = par;
+    this.name = name;
+    this.parent = parent;
     if (this.parent != null) {
       this.parent.addChild(this);
     }
   }
 
-  public void startUpdate(LocalDateTime initTime ){
-    if (this.totalTime.getSeconds() == 0) { //Not started yet
-      this.initialTime = initTime;
-
+  public void startUpdate(LocalDateTime actualTime, int seconds){
+    this.finalTime = actualTime;
+    this.totalTime = totalTime.plusSeconds(seconds);
+    if (this.totalTime.getSeconds() == seconds) {
+      this.initialTime = actualTime.minusSeconds(2);
 //      System.out.println("This is " + name);
 //      System.out.println("Initial time: " + initialTime);
 //      System.out.println("Total time: " + totalTime.getSeconds());
 //      System.out.println("Final time: " + finalTime);
 
       if (this.parent != null) {
-        this.parent.startUpdate(initTime); //Send update information to parent
+        this.parent.startUpdate(initialTime, seconds);
       }
     }
   }
 
-  public void update(Duration time, LocalDateTime finTime) {
-    this.totalTime = this.totalTime.plus(time);
-    this.finalTime = finTime;
+  public void update(LocalDateTime actualTime, int seconds) {
+    this.totalTime = this.totalTime.plusSeconds(seconds);
+    this.finalTime = actualTime;
 
 //    System.out.println("This is " + name);
 //    System.out.println("Initial time: " + initialTime);
@@ -46,7 +47,7 @@ public abstract class Assignment {
 //    System.out.println("Final time: " + finalTime);
 
     if(this.parent != null) {
-      this.parent.update(time, finTime);//Send update information to parent
+      this.parent.update(actualTime, seconds);
     }
   }
 

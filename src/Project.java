@@ -20,8 +20,5 @@ public class Project extends Assignment {
   @Override
   public void acceptVisitor(Visitor vis) {
     vis.visitRoot(this);
-//    for (Assignment child : children) {
-//      child.acceptVisitor(vis);
-//    }
   }
 }

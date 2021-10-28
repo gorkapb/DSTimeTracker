@@ -1,11 +1,12 @@
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Task extends Assignment {
   private ArrayList<Interval> intervals = new ArrayList<Interval>();
 
-  public Task(String n, Assignment par) {
-    super(n, par);
+  public Task(String name, Assignment parent) {
+    super(name, parent);
     this.type = false;
   }
 
@@ -13,20 +14,21 @@ public class Task extends Assignment {
 //    System.out.println("-> Task started, this is " + this.name);
 //    System.out.println("My parent is " + this.parent.name);
 
-    LocalDateTime actualTime = LocalDateTime.now();
-    Interval interval = new Interval(this, actualTime);
     Clock clock = Clock.getInstance();
+    LocalDateTime actualTime = clock.getTime();
+    Interval interval = new Interval(this, actualTime);
+
     clock.addObserver(interval);
+    int seconds = 2;
+    this.totalTime = totalTime.plusSeconds(seconds);
+    this.finalTime = actualTime;
 
-    if(totalTime.getSeconds() == 0) { //Not started yet
-      this.initialTime = actualTime;
-//      System.out.println("Initial time: " + this.initialTime);
-//      System.out.println("Total time: " + this.totalTime.getSeconds());
-//      System.out.println("Final time: " + this.finalTime);
-//      System.out.println("-> Updating parents now");
-      this.parent.startUpdate(this.initialTime);
+    if(totalTime.getSeconds() == seconds) { //Not started yet
+      this.initialTime = actualTime.minusSeconds(2);
     }
+    this.parent.startUpdate(actualTime, seconds);
 
+    interval.show();
   }
 
   public void stop() {
@@ -52,8 +54,5 @@ public class Task extends Assignment {
   @Override
   public void acceptVisitor(Visitor vis) {
     vis.visitTask(this);
-    for (Interval interval : this.intervals) {
-      interval.acceptVisitor(vis);
-    }
   }
 }

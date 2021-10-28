@@ -114,8 +114,14 @@ public class Visitor {
 
   public JSONObject visitInterval(Interval interval){
     JSONObject obj = new JSONObject();
-    obj.put("initialTime", interval.getInitialTimeToString());
-    obj.put("finalTime", interval.getFinalTimeToString());
+    if (interval.getInitialTime() != null) {
+      obj.put("initialTime", interval.getInitialTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+      obj.put("finalTime", interval.getFinalTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+    }
+    else {
+      obj.put("initialTime", JSONObject.NULL);
+      obj.put("finalTime",JSONObject.NULL);
+    }
     obj.put("totalTime", interval.getTotalTime());
 
     return obj;
